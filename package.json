@@ -1,0 +1,1 @@
+{"description":"تحدي الكرة العالمية — server-linked version (Ward Al-Mahmoud). No dependencies.","engines":{"node":">=18"},"name":"football-challenge-server","private":true,"scripts":{"build":"python3 build.py","start":"node server.js"},"version":"1.0.0"}

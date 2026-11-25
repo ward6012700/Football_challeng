@@ -1,0 +1,10 @@
+# Render free web service — no build step needed (public/index.html is prebuilt).
+# Deploy: Render dashboard -> New -> Web Service -> connect the GitHub repo
+# containing this folder -> Runtime: Node -> Start Command: node server.js
+services:
+  - type: web
+    name: football-challenge-server
+    env: node
+    plan: free
+    startCommand: node server.js
+    healthCheckPath: /api/health
