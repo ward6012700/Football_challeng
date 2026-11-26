@@ -98,7 +98,7 @@
       /* ---------- LAYOUT ---------- */
       .grid{display:grid;grid-template-columns:1.5fr 1fr;gap:18px;margin-top:22px;align-items:start}
       @media (max-width:820px){.grid{grid-template-columns:1fr}}
-      .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px}
+      .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px;transition:box-shadow .2s ease}
       .card h2{font-size:1.45rem;font-weight:700;margin-bottom:6px}
       .card .hint{color:var(--muted);font-size:.95rem;margin:0 0 14px}
       label.lbl{display:block;font-weight:800;margin:14px 0 6px;font-size:.95rem}
@@ -110,6 +110,7 @@
       /* mode cards */
       .modes{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
       @media (max-width:560px){.modes{grid-template-columns:1fr}}
+      @media (max-width:560px){.card{padding:16px}.hero-img{height:200px}.hero-card{margin:-56px 8px 0;padding:18px 14px 14px}}
       .mode{
         border:2px solid var(--line);background:var(--surface2);border-radius:14px;padding:14px 12px;cursor:pointer;
         text-align:right;font:inherit;color:var(--ink);width:100%;
@@ -135,6 +136,10 @@
       }
       .btn-gold{background:linear-gradient(180deg,var(--gold-bright),#d99a06);color:#231a00;box-shadow:0 6px 18px rgba(217,154,6,.35)}
       .btn-gold:hover{filter:brightness(1.06)}
+      .btn{transition:transform .12s ease,filter .15s ease,box-shadow .15s ease}
+      .btn:active:not(:disabled){transform:scale(.97)}
+      .btn:focus-visible,.mode:focus-visible,.chip:focus-visible,.ans:focus-visible{outline:3px solid rgba(245,179,1,.6);outline-offset:2px}
+      .mode:hover{border-color:var(--gold)}
       .btn-pitch{background:var(--pitch);color:#fff}
       .btn-ghost{background:transparent;border:2px solid var(--line);color:var(--ink)}
       .btn-block{width:100%;margin-top:18px}
@@ -161,7 +166,7 @@
       @media (max-width:560px){.answers{grid-template-columns:1fr}}
       .ans{
         display:flex;align-items:center;gap:12px;text-align:right;background:var(--surface2);border:2px solid var(--line);
-        border-radius:14px;padding:13px 14px;font:inherit;font-size:1.02rem;font-weight:700;color:var(--ink);cursor:pointer;width:100%;
+        border-radius:14px;padding:14px 16px;min-height:56px;font:inherit;font-size:1.02rem;font-weight:700;color:var(--ink);cursor:pointer;width:100%;user-select:none;
       }
       .ans .letter{flex:0 0 34px;width:34px;height:34px;border-radius:50%;background:var(--surface);border:1.5px solid var(--line);display:grid;place-items:center;font-family:system-ui,"Segoe UI",Tahoma,sans-serif}
       .ans:hover:not(:disabled){border-color:var(--gold-bright)}
@@ -220,7 +225,7 @@
       .board .who b{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
       .board .who span{color:var(--muted);font-size:.82rem}
       .board .pts{font-family:system-ui,"Segoe UI",Tahoma,sans-serif;font-weight:800;font-size:1.1rem}
-      .board li.me{background:var(--gold-soft);border-color:var(--gold-bright)}
+      .board li.me{background:var(--gold-soft);border-color:var(--gold-bright);box-shadow:0 2px 10px rgba(217,154,6,.25)}
       .final-zone{margin-top:12px;border-top:1.5px dashed var(--line);padding-top:10px;font-size:.9rem;color:var(--muted)}
       .final-zone b{color:var(--gold)}
       /* ---------- INFO SECTIONS ---------- */
@@ -320,6 +325,7 @@
       .shop-item .s-ico{flex:0 0 44px;width:44px;height:44px;border-radius:12px;background:var(--pitch);display:grid;place-items:center;font-size:1.3rem}
       .shop-item h3{font-size:1.05rem;margin:0 0 2px}
       .shop-item p{margin:0;color:var(--muted);font-size:.87rem;line-height:1.55}
+      .shop-item:hover{border-color:var(--gold)}
       .shop-item .buy-row{display:flex;align-items:center;gap:8px;margin-top:8px;flex-wrap:wrap}
       .price-tag{font-weight:900;color:var(--gold);font-family:system-ui,"Segoe UI",Tahoma,sans-serif;direction:ltr}
       .owned-tag{font-weight:800;color:var(--good);font-size:.88rem}
@@ -760,12 +766,11 @@
         <h3 id="packTitle">شحن كوينز</h3>
         <div class="row"><span>الباقة</span><span id="packCoins" style="direction:ltr">350 🪙</span></div>
         <div class="row"><span>السعر</span><span id="packPrice" style="direction:ltr">$2.99</span></div>
-        <div class="row"><span>رصيدك بعد الشحن</span><span id="packAfter" style="direction:ltr">0 🪙</span></div>
         <div class="demo-note">
-          <b>هذا شحن تجريبي للتوضيح فقط:</b> ما في أي دفع حقيقي بهالنسخة، وما منطلب أي بيانات بطاقة. لما تنطلق اللعبة رسمياً بالمرحلة التانية، الشحن بيصير عبر متجر التطبيقات وبطاقات الدفع الحقيقية وبنفس الأسعار المعروضة.
+          <b>الشحن عن طريق مراسلة المطوّر:</b> ما في دفع داخل الصفحة. اضغط «اطلب عبر إنستغرام» وراسل ورد على @ward.6012700 بالباقة اللي بدك ياها، وهو بيشحنلك الكوينز على حسابك.
         </div>
         <div style="display:flex;gap:8px;flex-wrap:wrap">
-          <button type="button" class="btn btn-gold" id="packConfirm" style="flex:1">تأكيد الشحن التجريبي</button>
+          <button type="button" class="btn btn-gold" id="packConfirm" style="flex:1">اطلب عبر إنستغرام 📩</button>
           <button type="button" class="btn btn-ghost" id="packCancel">إلغاء</button>
         </div>
       </div>
@@ -1851,8 +1856,12 @@
         b.innerHTML = t.name + (owned ? (active ? " — مفعّل ✓" : " — فعّل") : " — <span class='price-tag'>" + fmt(t.price) + " 🪙</span>");
         b.addEventListener("click", function(){
           if(owned){ activeTitle = active ? null : t; sfx("click"); updateWallet(); renderBoard(); toast(activeTitle ? "تم تفعيل لقب " + t.name : "تم إلغاء اللقب"); }
-          else if(coins >= t.price){ coins -= t.price; ownedTitles[t.id] = true; activeTitle = t; sfx("coin"); updateWallet(); renderBoard(); toast("مبروك! اشتريت وفعلت لقب " + t.name); }
-          else { toast("كوينزك ما بتكفي — بدك " + fmt(t.price) + " وعندك " + fmt(coins)); }
+          else {
+            if(!playerId){ toast("سجّل اسمك أولاً مشان تشتري لقب 🌐"); return; }
+            api("/api/shop/buy", "POST", { playerId: playerId, item: "title:" + t.id }).then(function (r) {
+              applyPlayer(r.player); sfx("coin"); renderBoard(); toast("مبروك! اشتريت وفعلت لقب " + t.name);
+            }).catch(function (e) { toast(e.message || "ما تم الشراء"); });
+          }
         });
         box.appendChild(b);
       });
@@ -1860,14 +1869,13 @@
     document.querySelectorAll(".buy-item").forEach(function(btn){
       btn.addEventListener("click", function(){
         var item = btn.getAttribute("data-item");
-        var price = item === "life" ? 30 : item === "hint" ? 15 : 150;
-        if(item === "noads" && inv.noads){ toast("مفعّلة عندك من قبل ✓"); return; }
-        if(coins < price){ toast("كوينزك ما بتكفي — بدك " + price + " وعندك " + fmt(coins) + ". اشحن أو العب واجمع."); return; }
-        coins -= price; sfx("coin");
-        if(item === "life"){ inv.life++; toast("انضافت حياة إضافية لمخزونك ❤"); }
-        if(item === "hint"){ inv.hint++; toast("انضاف تلميح 50/50 لمخزونك 💡"); }
-        if(item === "noads"){ inv.noads = true; var _sc = $("sponsorCard"); if(_sc) _sc.style.display = "none"; toast("تم! انخفت بطاقة الراعي من شاشتك ✓"); }
-        updateWallet();
+        if(!playerId){ toast("سجّل اسمك أولاً مشان تشتري من المتجر 🌐"); return; }
+        api("/api/shop/buy", "POST", { playerId: playerId, item: item }).then(function (r) {
+          applyPlayer(r.player); sfx("coin");
+          if(item === "life"){ toast("انضافت حياة إضافية لمخزونك ❤"); }
+          else if(item === "hint"){ toast("انضاف تلميح 50/50 لمخزونك 💡"); }
+          else if(item === "noads"){ var _sc = $("sponsorCard"); if(_sc) _sc.style.display = "none"; toast("تم! انخفت بطاقة الراعي من شاشتك ✓"); }
+        }).catch(function (e) { toast(e.message || "ما تم الشراء"); });
       });
     });
     /* recharge (demo) */
@@ -1876,7 +1884,6 @@
         pendingPack = {coins: parseInt(btn.getAttribute("data-coins"),10), price: btn.getAttribute("data-price")};
         $("packCoins").textContent = fmt(pendingPack.coins) + " 🪙";
         $("packPrice").textContent = pendingPack.price;
-        $("packAfter").textContent = fmt(coins + pendingPack.coins) + " 🪙";
         $("packModal").classList.add("show");
         sfx("click");
       });
@@ -1885,13 +1892,11 @@
     $("packModal").addEventListener("click", function(e){ if(e.target === this){ this.classList.remove("show"); } });
     $("packConfirm").addEventListener("click", function(){
       if(!pendingPack) return;
-      coins += pendingPack.coins;
       $("packModal").classList.remove("show");
-      sfx("win");
-      toast("تم الشحن التجريبي بنجاح: +" + fmt(pendingPack.coins) + " كوينز (بدون دفع حقيقي) 🪙");
-      confetti($("shopCard"));
+      sfx("click");
+      toast("راسل ورد على إنستغرام @ward.6012700 واطلب باقة " + fmt(pendingPack.coins) + " كوينز 📩");
+      window.open("https://www.instagram.com/ward.6012700", "_blank");
       pendingPack = null;
-      updateWallet();
     });
     $("goShopBtn").addEventListener("click", function(){
       sfx("click");
@@ -2043,7 +2048,7 @@
         timeLimit: mode === "final" ? 12 : 15,
         timeLeft: 0, timer: null, answered: false,
         used5050Free: false, usedSkip: false, retriedQ: false,
-        coinsEarned: 0, finished: false, deadByLives: false,
+        coinsEarned: 0, coinsSpent: 0, startedAt: Date.now(), finished: false, deadByLives: false,
         daily: mode === "daily", counted: false,
         players: mode === "duel" ? [
           {name: p1, score:0, correct:0, bestStreak:0},
@@ -2238,7 +2243,7 @@
       proceed();
     });
     $("retryBtn").addEventListener("click", function(){
-      if(inv.retry > 0){ inv.retry--; } else if(coins >= 20){ coins -= 20; } else { toast("بدك 20 كوينز للمحاولة التانية — عندك " + fmt(coins)); return; } G.retriedQ = true; G.answered = false;
+      if(inv.retry > 0){ inv.retry--; } else if(coins >= 20){ coins -= 20; G.coinsSpent = (G.coinsSpent || 0) + 20; } else { toast("بدك 20 كوينز للمحاولة التانية — عندك " + fmt(coins)); return; } G.retriedQ = true; G.answered = false;
       if(mode !== "duel"){ G.lives++; $("heartsNow").textContent = heartsStr(G.lives); }
       $("retryRow").style.display = "none";
       var fb = $("factBox"); fb.className = "fact"; fb.textContent = "";
@@ -2279,7 +2284,7 @@
       if(wrongs.length <= 1) return;
       if(!G.used5050Free){ G.used5050Free = true; }
       else if(inv.hint > 0){ inv.hint--; }
-      else if(coins >= 15){ coins -= 15; sfx("coin"); }
+      else if(coins >= 15){ coins -= 15; G.coinsSpent = (G.coinsSpent || 0) + 15; sfx("coin"); }
       else { toast("خلص التلميح المجاني، وما عندك كوينز كافية (15)"); return; }
       shuffle(wrongs).slice(0,2).forEach(function(b){ b.classList.add("hidden-5050"); b.disabled = true; });
       sfx("click"); updateWallet();
@@ -2637,7 +2642,9 @@
       }
       return api("/api/submit", "POST", {
         playerId: playerId, score: score, correct: correct, total: total,
-        coinsEarned: G.coinsEarned || 0, coins: coins
+        coinsEarned: G.coinsEarned || 0, coinsSpent: G.coinsSpent || 0,
+        durationMs: Date.now() - (G.startedAt || Date.now()),
+        coins: coins
       }).then(function (r) {
         applyPlayer(r.player);
         return fetchBoard();
